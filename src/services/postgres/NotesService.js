@@ -47,7 +47,7 @@ class NotesService {
     return result.rows.map(mapDBToModel)[0];
   }
 
-  async editNote(id, { title, body, tags }) {
+  async editNoteById(id, { title, body, tags }) {
     const updatedAt = new Date().toISOString();
     const query = {
       text: 'UPDATE notes SET title = $1, body = $2, tags = $3, updated_at = $4 WHERE id = $5 RETURNING id',
@@ -60,7 +60,7 @@ class NotesService {
     }
   }
 
-  async deleteNote(id) {
+  async deleteNoteById(id) {
     const query = {
       text: 'DELETE FROM notes WHERE id = $1 RETURNING id',
       values: [id],
